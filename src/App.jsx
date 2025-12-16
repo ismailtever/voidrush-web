@@ -513,7 +513,7 @@ function App() {
           </div>
           
           <div className="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
-            <p>© 2024 VOID RUSH. All rights reserved.</p>
+            <p>© 2025 VOID RUSH. All rights reserved.</p>
           </div>
         </div>
       </footer>
