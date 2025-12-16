@@ -2,6 +2,8 @@
 
 High-conversion landing page for VOID RUSH mobile game.
 
+🌐 **Live Site:** [https://voidrush.fun](https://voidrush.fun)
+
 ## Features
 
 - 🎮 Modern, premium design with dark neon theme
@@ -9,6 +11,7 @@ High-conversion landing page for VOID RUSH mobile game.
 - 📱 Fully responsive (mobile-first)
 - 🎨 Tailwind CSS styling
 - 🚀 Built with React + Vite
+- 🔍 SEO optimized with meta tags
 
 ## Tech Stack
 
@@ -30,3 +33,5 @@ npm run dev
 ```bash
 npm run build
 ```
+
+The build output will be in the `dist` directory, ready for deployment to voidrush.fun
