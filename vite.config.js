@@ -15,9 +15,9 @@ export default defineConfig({
       name: 'copy-404',
       closeBundle() {
         // Build sonrası index.html'i 404.html'e kopyala
-        const distPath = join(__dirname, 'dist')
-        const indexPath = join(distPath, 'index.html')
-        const four04Path = join(distPath, '404.html')
+        const docsPath = join(__dirname, 'docs')
+        const indexPath = join(docsPath, 'index.html')
+        const four04Path = join(docsPath, '404.html')
         try {
           copyFileSync(indexPath, four04Path)
           console.log('✓ Copied index.html to 404.html')
@@ -29,7 +29,7 @@ export default defineConfig({
   ],
   base: '/',
   build: {
-    outDir: 'dist',
+    outDir: 'docs',
     sourcemap: false,
   },
 })
