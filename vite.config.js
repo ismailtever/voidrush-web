@@ -57,6 +57,14 @@ export default defineConfig({
           
           writeFileSync(html404Path, indexHtml, 'utf-8')
           
+          // Create HTML files for each route to avoid 404 errors
+          const routes = ['privacy', 'support', 'terms']
+          routes.forEach(route => {
+            const routeHtmlPath = resolve(buildPath, `${route}.html`)
+            writeFileSync(routeHtmlPath, indexHtml, 'utf-8')
+            console.log(`✓ Created ${route}.html`)
+          })
+          
           // Copy app-ads.txt from public to docs if it exists
           const publicAppAdsPath = resolve(__dirname, 'public', 'app-ads.txt')
           const docsAppAdsPath = resolve(buildPath, 'app-ads.txt')
