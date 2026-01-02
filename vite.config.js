@@ -1,19 +1,22 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { readFileSync, writeFileSync } from 'fs'
+import { readFileSync, writeFileSync, copyFileSync, existsSync } from 'fs'
 import { resolve } from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
+  build: {
+    outDir: 'docs',
+  },
   plugins: [
     react(),
     {
       name: 'copy-404-html',
       closeBundle() {
         // After build, copy index.html to 404.html and inject scripts
-        const distPath = resolve(__dirname, 'dist')
-        const indexPath = resolve(distPath, 'index.html')
-        const html404Path = resolve(distPath, '404.html')
+        const buildPath = resolve(__dirname, 'docs')
+        const indexPath = resolve(buildPath, 'index.html')
+        const html404Path = resolve(buildPath, '404.html')
         
         try {
           let indexHtml = readFileSync(indexPath, 'utf-8')
@@ -53,6 +56,14 @@ export default defineConfig({
           indexHtml = indexHtml.replace('</head>', staticFileScript + '\n  </head>')
           
           writeFileSync(html404Path, indexHtml, 'utf-8')
+          
+          // Copy app-ads.txt from public to docs if it exists
+          const publicAppAdsPath = resolve(__dirname, 'public', 'app-ads.txt')
+          const docsAppAdsPath = resolve(buildPath, 'app-ads.txt')
+          if (existsSync(publicAppAdsPath)) {
+            copyFileSync(publicAppAdsPath, docsAppAdsPath)
+            console.log('✓ Copied app-ads.txt to docs folder')
+          }
         } catch (error) {
           console.warn('Could not copy index.html to 404.html:', error)
         }
